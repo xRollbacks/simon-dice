@@ -1,42 +1,21 @@
-.centro {
-	margin: auto;
-	width: 50%;
-	border: 3px solid green;
-	padding: 10px;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 0px;
-	grid-auto-rows: minmax(100px, auto);
+.cuadro {
+	height: 200px;
+	opacity: 0.5;
+	transition: opacity 500ms;
 }
 
-.azul {
-	grid-row-start: 1;
-	grid-row-end: 2;
+#azul {
 	background-color: blue;
-	width: 150px;
-	padding: 0px;
-	margin: 0px;
 }
 
-.verde {
-	grid-row-start: 3;
-	grid-row-end: 4;
+#verde {
 	background-color: green;
-	width: 150px;
-	padding: 0px;
-	margin: 0px;
 }
 
-.rojo {
-	grid-row-start: 3;
-	grid-row-end: 3;
+#rojo {
 	background-color: red;
-	width: 150px;
 }
 
-.amarillo {
-	grid-row-start: 2;
-	grid-row-end: 1;
+#amarillo {
 	background-color: yellow;
-	width: 150px;
 }

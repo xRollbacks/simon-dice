@@ -6,17 +6,33 @@
 		<title>Simon dice!</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+		<link
+			rel="stylesheet"
+			href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+		/>
 	</head>
 
 	<body>
 		<h2>
 			Bienvenido al juego de "Simon dice". Las reglas las podes encontrar online
 		</h2>
-		<div class="centro">
-			<div class="azul">Azul</div>
-			<div class="verde">Verde</div>
-			<div class="rojo">Rojo</div>
-			<div class="amarillo">Amarillo</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+					<div id="azul" class="cuadro">A</div>
+				</div>
+				<div class="col-sm">
+					<div id="verde" class="cuadro">B</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm">
+					<div id="rojo" class="cuadro">C</div>
+				</div>
+				<div class="col-sm">
+					<div id="amarillo" class="cuadro">D</div>
+				</div>
+			</div>
 		</div>
 		<input type="submit" id="submitColores" value="Empezar el juego" />
 		<input type="submit" id="chequearColores" value="Continuar" />
