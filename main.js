@@ -8,7 +8,8 @@ let $cuadro = document.querySelectorAll(".cuadro");
 const $texto = document.querySelector("#textoPrimario");
 
 let arrayInputs = [];
-let ronda = "";
+let $ronda = document.querySelector("#ronda");
+let ronda = 0;
 
 function devolverColorAlAzar() {
 	const numeroRandom = Math.random();
@@ -27,7 +28,7 @@ $rojo.style.cursor = "pointer";
 $verde.style.cursor = "pointer";
 $amarillo.style.cursor = "pointer";
 
-$submit.onclick = manejarRonda;
+($submit.onclick = manejarRonda), reiniciarEstado;
 
 $azul.onclick = function() {
 	arrayInputs.push($azul);
@@ -52,10 +53,11 @@ $amarillo.onclick = function() {
 function chequearColores() {
 	for (let i = 0; arrayColores.length > i; i++) {
 		if (arrayInputs[i] === arrayColores[i]) {
-			console.log("Vas bien");
+			$texto.textContent = "Vas bien, segui asi!";
 		} else if (arrayInputs[i] !== arrayColores[i]) {
 			$texto.textContent =
 				"Perdiste! Clickea en empezar juego para jugar otra vez";
+			arrayColores = [];
 		}
 	}
 }
@@ -83,5 +85,13 @@ function manejarRonda() {
 
 	setTimeout(() => {
 		chequearColores();
+	}, (arrayColores.length + 1) * 2000);
+
+	$ronda.textContent = "Ronda: #" + ronda++;
+
+	setTimeout(() => {
+		if (arrayInputs.length === arrayColores.length) {
+			manejarRonda();
+		}
 	}, (arrayColores.length + 1) * 2000);
 }
