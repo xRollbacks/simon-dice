@@ -33,21 +33,25 @@ $amarillo.style.cursor = "pointer";
 $azul.onclick = function() {
 	arrayInputs.push($azul);
 	iluminarColores($azul);
+	console.log($azul);
 };
 
 $rojo.onclick = function() {
 	arrayInputs.push($rojo);
 	iluminarColores($rojo);
+	console.log($rojo);
 };
 
 $verde.onclick = function() {
 	arrayInputs.push($verde);
 	iluminarColores($verde);
+	console.log($verde);
 };
 
 $amarillo.onclick = function() {
 	arrayInputs.push($amarillo);
 	iluminarColores($amarillo);
+	console.log($amarillo);
 };
 
 function chequearColores() {
@@ -61,10 +65,10 @@ function chequearColores() {
 		}
 	}
 }
-function iluminarColores($color) {
-	$color.style.opacity = 1;
+function iluminarColores($cuadro) {
+	$cuadro.style.opacity = 1;
 	setTimeout(function() {
-		$color.style.opacity = 0.5;
+		$cuadro.style.opacity = 0.5;
 	}, 500);
 }
 
@@ -75,17 +79,26 @@ function reiniciarEstado() {
 }
 function manejarRonda() {
 	arrayColores.push(devolverColorAlAzar());
+	bloquearInputUsuario();
 
-	arrayColores.forEach(function($color, i) {
+	arrayColores.forEach(function($cuadro, i) {
 		setTimeout(function() {
-			iluminarColores($color);
+			iluminarColores($cuadro);
 		}, (i + 1) * 1000);
 	});
+
+	for (i = 0; arrayColores.length > i; i++)
+		setTimeout(() => {
+			desbloquearInputUsuario();
+		}, (i + 1) * 2000);
+
 	arrayInputs = [];
 
-	setTimeout(() => {
-		chequearColores();
-	}, (arrayColores.length + 1) * 2000);
+	arrayColores.forEach(function() {
+		setTimeout(() => {
+			chequearColores();
+		}, (arrayColores.length + 1) * 2000);
+	});
 
 	$ronda.textContent = "Ronda: #" + ronda++;
 
@@ -94,4 +107,19 @@ function manejarRonda() {
 			manejarRonda();
 		}
 	}, (arrayColores.length + 1) * 2000);
+}
+
+function bloquearInputUsuario() {
+	$cuadro.forEach(function($cuadro) {
+		$cuadro.onclick = function() {};
+	});
+}
+function desbloquearInputUsuario() {
+	$cuadro.forEach(function($cuadro) {
+		$cuadro.onclick = function() {
+			arrayInputs.push($cuadro);
+			iluminarColores($cuadro);
+			console.log($cuadro);
+		};
+	});
 }
